@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Communications — Jordan Clermont</title>
+  <meta name="description" content="Communications and strategy work by Jordan Clermont — case studies from SAITSA." />
+  <meta name="robots" content="noindex" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --hero-bg:    #3d5f6e;
+      --hero-text:  #f0ece3;
+      --hero-muted: #c2d4db;
+      --sky:        #f0ece3;
+      --ink:        #1f1c17;
+      --muted:      #6b6358;
+      --wheat:      #c4963a;
+      --sage:       #5a7c5e;
+      --sage-deep:  #3d5c40;
+      --clay:       #b5623a;
+      --bigsky:     #5b8aad;
+      --border:     #cec7b5;
+      --focus:      #2a7fff;
+      --max:        1100px;
+    }
+
+    .skip-link {
+      position: absolute; top: -100%; left: 1rem;
+      padding: 0.5rem 1rem;
+      background: var(--ink); color: var(--sky);
+      font-family: 'DM Sans', sans-serif; font-size: 0.85rem;
+      text-decoration: none; z-index: 10000;
+      border-radius: 0 0 4px 4px;
+    }
+    .skip-link:focus { top: 0; }
+    :focus-visible { outline: 2px solid var(--focus); outline-offset: 3px; }
+    html { scroll-behavior: smooth; }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+      html { scroll-behavior: auto; }
+    }
+
+    body {
+      background: var(--sky);
+      color: var(--ink);
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 300;
+      min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .horizon-bar {
+      position: fixed; bottom: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--sage), var(--bigsky) 30%, var(--wheat) 60%, var(--clay) 85%, var(--sage-deep));
+      z-index: 100;
+    }
+
+    /* ── NAV ── */
+    .site-nav {
+      background: var(--hero-bg);
+      padding: 1rem 3rem;
+    }
+    .site-nav-inner {
+      max-width: var(--max);
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .nav-back {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.7rem;
+      color: var(--hero-muted);
+      text-decoration: none;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+    .nav-back:hover { color: var(--hero-text); }
+    .nav-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65rem;
+      color: var(--hero-muted);
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      opacity: 0.6;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      background: var(--hero-bg);
+      padding: 3rem 3rem 4rem;
+      opacity: 0;
+      animation: fadeUp 0.8s ease 0.1s forwards;
+    }
+    .hero-inner {
+      max-width: var(--max);
+      margin: 0 auto;
+    }
+    .hero-kicker {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65rem;
+      color: var(--hero-muted);
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+    }
+    h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(3rem, 8vw, 5.5rem);
+      font-weight: 700;
+      line-height: 0.9;
+      letter-spacing: -0.03em;
+      color: var(--hero-text);
+    }
+    h1 em {
+      display: block;
+      font-style: italic;
+      font-weight: 600;
+    }
+    .hero-desc {
+      margin-top: 1.8rem;
+      max-width: 620px;
+      font-size: 1.1rem;
+      color: var(--hero-muted);
+      line-height: 1.75;
+      font-weight: 400;
+    }
+    .hero-meta {
+      margin-top: 2rem;
+      display: flex;
+      gap: 2.5rem;
+      flex-wrap: wrap;
+    }
+    .hero-stat { display: flex; flex-direction: column; gap: 0.2rem; }
+    .hero-stat-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--hero-text);
+      line-height: 1;
+    }
+    .hero-stat-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.62rem;
+      color: var(--hero-muted);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    /* ── MAIN ── */
+    main {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 0 3rem;
+    }
+
+    /* ── CASE STUDY ── */
+    .case-study {
+      padding: 4rem 0;
+      border-bottom: 1px solid var(--border);
+      opacity: 0;
+      animation: fadeUp 0.7s ease forwards;
+    }
+    .case-study:nth-child(1) { animation-delay: 0.3s; }
+    .case-study:nth-child(2) { animation-delay: 0.45s; }
+    .case-study:nth-child(3) { animation-delay: 0.6s; }
+
+    .case-header {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: start;
+      gap: 2rem;
+      margin-bottom: 2rem;
+    }
+    .case-num {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.62rem;
+      color: var(--border);
+      letter-spacing: 0.15em;
+      margin-bottom: 0.6rem;
+    }
+    h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 400;
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+    }
+    .case-tags {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+      align-items: flex-end;
+      padding-top: 0.2rem;
+    }
+    .tag {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.6rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      border: 1px solid var(--border);
+      padding: 0.2rem 0.5rem;
+      white-space: nowrap;
+    }
+
+    .case-body {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+    }
+
+    .case-section-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.6rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 0.6rem;
+    }
+    .case-text {
+      font-size: 1.05rem;
+      line-height: 1.8;
+      color: var(--ink);
+      font-weight: 400;
+    }
+    .case-text + .case-text { margin-top: 1.2rem; }
+
+    /* stats row */
+    .case-stats {
+      display: flex;
+      gap: 2rem;
+      margin-top: 1.8rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border);
+      flex-wrap: wrap;
+    }
+    .case-stat { display: flex; flex-direction: column; gap: 0.2rem; }
+    .case-stat-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--hero-bg);
+      line-height: 1;
+    }
+    .case-stat-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.58rem;
+      color: var(--muted);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      max-width: 120px;
+      line-height: 1.4;
+    }
+
+    /* ── BEFORE/AFTER ── */
+    .before-after {
+      grid-column: 1 / -1;
+      margin-top: 0.5rem;
+    }
+    .ba-label-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      margin-bottom: 0.5rem;
+    }
+    .ba-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.6rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .ba-label.after { color: var(--sage); }
+    .ba-frames {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+    .ba-frame {
+      border: 1px solid var(--border);
+      overflow: hidden;
+      background: #fff;
+      position: relative;
+    }
+    .ba-frame img {
+      width: 100%;
+      display: block;
+    }
+    .ba-frame.after { border-color: var(--sage); }
+
+    /* caption below frames */
+    .ba-caption {
+      margin-top: 0.8rem;
+      font-size: 0.82rem;
+      color: var(--muted);
+      line-height: 1.6;
+      font-style: italic;
+    }
+
+    /* ── PULL QUOTE ── */
+    .pull-quote {
+      grid-column: 1 / -1;
+      margin-top: 1rem;
+      padding: 1.5rem 2rem;
+      border-left: 3px solid var(--wheat);
+      background: rgba(196, 150, 58, 0.06);
+    }
+    .pull-quote p {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.35rem;
+      font-style: italic;
+      line-height: 1.5;
+      color: var(--ink);
+    }
+    .pull-quote cite {
+      display: block;
+      margin-top: 0.6rem;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.62rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      font-style: normal;
+    }
+
+    /* ── VIDEO EMBED ── */
+    .video-wrap {
+      grid-column: 1 / -1;
+      margin-top: 0.5rem;
+      position: relative;
+      padding-bottom: 56.25%;
+      height: 0;
+      overflow: hidden;
+      border: 1px solid var(--border);
+    }
+    .video-wrap iframe {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      border: none;
+    }
+    .video-note {
+      margin-top: 0.6rem;
+      font-size: 0.8rem;
+      color: var(--muted);
+      font-style: italic;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.62rem;
+      letter-spacing: 0.05em;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 2.5rem 3rem 5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+      border-top: 1px solid var(--border);
+    }
+    .footer-copy {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65rem;
+      color: var(--muted);
+    }
+    .footer-contact {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.72rem;
+      color: var(--muted);
+      text-decoration: none;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+    .footer-contact:hover { color: var(--ink); }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(18px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 680px) {
+      .site-nav { padding: 1rem 1.5rem; }
+      .hero { padding: 2rem 1.5rem 3rem; }
+      main { padding: 0 1.5rem; }
+      .case-body { grid-template-columns: 1fr; gap: 1.5rem; }
+      .case-header { grid-template-columns: 1fr; }
+      .case-tags { align-items: flex-start; flex-direction: row; flex-wrap: wrap; }
+      .ba-frames { grid-template-columns: 1fr; }
+      .ba-label-row { grid-template-columns: 1fr; }
+      .hero-meta { gap: 1.5rem; }
+      footer { padding: 2rem 1.5rem 5rem; }
+    }
+  </style>
+</head>
+<body>
+  <a href="#main" class="skip-link">Skip to content</a>
+  <div class="horizon-bar" aria-hidden="true"></div>
+
+  <nav class="site-nav" aria-label="Site navigation">
+    <div class="site-nav-inner">
+      <a href="/" class="nav-back">← Jordan Clermont</a>
+      <span class="nav-label">Communications</span>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <div class="hero-inner">
+      <div class="hero-kicker">Portfolio — Communications &amp; Strategy</div>
+      <h1>Making organizations<br><em>say what they mean.</em></h1>
+      <p class="hero-desc">Nine and a half years as the communications lead at SAITSA — the students' association serving 15,000+ students at SAIT in Calgary. Multi-channel strategy, brand stewardship, revenue generation, and the occasional fire drill.</p>
+      <div class="hero-meta" aria-label="Key figures">
+        <div class="hero-stat">
+          <span class="hero-stat-num">9.5</span>
+          <span class="hero-stat-label">Years at SAITSA</span>
+        </div>
+        <div class="hero-stat">
+          <span class="hero-stat-num">15K+</span>
+          <span class="hero-stat-label">Student members reached</span>
+        </div>
+        <div class="hero-stat">
+          <span class="hero-stat-num">$45K</span>
+          <span class="hero-stat-label">Annual ad &amp; sponsorship revenue</span>
+        </div>
+        <div class="hero-stat">
+          <span class="hero-stat-num">22K</span>
+          <span class="hero-stat-label">Peak email subscribers</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+
+    <!-- ── CASE 1: BULLETIN REBUILD ── -->
+    <article class="case-study" aria-labelledby="case1-title">
+      <div class="case-header">
+        <div>
+          <div class="case-num">01 / 03</div>
+          <h2 id="case1-title">Student Bulletin<br>Rebuild</h2>
+        </div>
+        <div class="case-tags" aria-label="Topics">
+          <span class="tag">Email</span>
+          <span class="tag">HTML/CSS</span>
+          <span class="tag">Brand</span>
+          <span class="tag">Strategy</span>
+        </div>
+      </div>
+
+      <div class="case-body">
+        <div>
+          <div class="case-section-label">The problem</div>
+          <p class="case-text">The student bulletin reached 15,000–22,000 subscribers weekly — but the template was a patchwork of Constant Contact's drag-and-drop builder, accumulated over years. No consistent hierarchy, mismatched styling, no relationship to the broader visual identity the design team was building.</p>
+          <p class="case-text">Email HTML is its own constraint system: every major client renders CSS differently, many strip it entirely, and Outlook has been doing its own thing since the mid-2000s. The template had to work everywhere, from Gmail on a phone to Outlook on a desktop.</p>
+        </div>
+        <div>
+          <div class="case-section-label">What I did</div>
+          <p class="case-text">Rebuilt the template from scratch in clean, table-based HTML/CSS — the kind email clients actually respect — using Claude as a development partner and Dreamweaver's live preview for real-time testing across rendering environments. Iterated through the constraints methodically: padding inconsistencies, image blocking fallbacks, mobile breakpoints that don't break Outlook.</p>
+          <p class="case-text">The new design was aligned with the student handbook visual identity — same typographic tone, same structural logic, same sense that these materials come from the same place. The result was a template any team member could edit without touching code: input the content, get the updated HTML, send.</p>
+        </div>
+
+        <div class="before-after">
+          <div class="ba-label-row">
+            <span class="ba-label">Before — Constant Contact builder</span>
+            <span class="ba-label after">After — Custom HTML/CSS template</span>
+          </div>
+          <div class="ba-frames">
+            <div class="ba-frame" role="img" aria-label="Before: old bulletin template using Constant Contact builder">
+              <img src="../assets/bulletin-before.jpg" alt="Old SAITSA student bulletin — purple branded, visually inconsistent layout built in Constant Contact's drag-and-drop editor" loading="lazy" />
+            </div>
+            <div class="ba-frame after" role="img" aria-label="After: rebuilt custom HTML template">
+              <img src="../assets/bulletin-after.jpg" alt="New SAITSA student bulletin — cleaner layout, consistent hierarchy, aligned with handbook visual identity" loading="lazy" />
+            </div>
+          </div>
+          <p class="ba-caption">Left: the previous template, assembled in Constant Contact's visual builder. Right: the rebuilt template, coded from scratch to align with the 2025–26 student handbook visual identity and optimized for consistent rendering across email clients.</p>
+        </div>
+
+        <div class="case-stats" role="list" aria-label="Key metrics">
+          <div class="case-stat" role="listitem">
+            <span class="case-stat-num">22K</span>
+            <span class="case-stat-label">Peak weekly subscribers</span>
+          </div>
+          <div class="case-stat" role="listitem">
+            <span class="case-stat-num">70+</span>
+            <span class="case-stat-label">Pages — matching handbook design</span>
+          </div>
+          <div class="case-stat" role="listitem">
+            <span class="case-stat-num">0</span>
+            <span class="case-stat-label">Code edits needed per issue after rebuild</span>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- ── CASE 2: TEDI HOTLINE ── -->
+    <article class="case-study" aria-labelledby="case2-title">
+      <div class="case-header">
+        <div>
+          <div class="case-num">02 / 03</div>
+          <h2 id="case2-title">The Tedi Hotline —<br><em>a new channel</em></h2>
+        </div>
+        <div class="case-tags" aria-label="Topics">
+          <span class="tag">SMS</span>
+          <span class="tag">Revenue</span>
+          <span class="tag">Channel Strategy</span>
+          <span class="tag">Partnership</span>
+        </div>
+      </div>
+
+      <div class="case-body">
+        <div>
+          <div class="case-section-label">The problem</div>
+          <p class="case-text">Email is the workhorse of student communications — but the open rate data tells an uncomfortable story. SMS open rates sit near 98%. Email hovers somewhere between 20–40% on a good week. A significant portion of the membership wasn't being reached reliably through the bulletin alone.</p>
+          <p class="case-text">There was also a sponsorship ceiling on the bulletin: only so many ad placements per send, and the inventory was spoken for. A new channel meant new ad inventory and new leverage with partners.</p>
+        </div>
+        <div>
+          <div class="case-section-label">What I built</div>
+          <p class="case-text">Researched and proposed the Tedi Hotline — an SMS channel on TextMagic, named after the organization's mascot, Tedi the Yeti. Built the sign-up infrastructure, wrote the onboarding copy, and designed the weekly send cadence (the Monday Report).</p>
+          <p class="case-text">Then tied it to the Calgary Flames partnership: giveaway entry required an active Tedi Hotline subscription. Students who wanted the tickets had to join the SMS list first. Three consecutive monthly giveaways — September, October, and November 2025 — drove over 1,000 form completions in a single semester while the SMS list grew.</p>
+        </div>
+
+        <div class="pull-quote">
+          <p>"Get the Monday Report with weekly highlights, exclusive contests, giveaways &amp; special student discounts. Text <strong>TEDI</strong> to 1-833-245-9191."</p>
+          <cite>— Tedi Hotline sign-up prompt, live in the bulletin and at events</cite>
+        </div>
+
+        <div class="case-stats" role="list" aria-label="Key metrics">
+          <div class="case-stat" role="listitem">
+            <span class="case-stat-num">1,006</span>
+            <span class="case-stat-label">Giveaway entries in one semester</span>
+          </div>
+          <div class="case-stat" role="listitem">
+            <span class="case-stat-num">3</span>
+            <span class="case-stat-label">Consecutive monthly Flames partnerships</span>
+          </div>
+          <div class="case-stat" role="listitem">
+            <span class="case-stat-num">~98%</span>
+            <span class="case-stat-label">SMS open rate vs. email</span>
+          </div>
+          <div class="case-stat" role="listitem">
+            <span class="case-stat-num">$5K</span>
+            <span class="case-stat-label">Specsavers — per semester in sponsorship</span>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- ── CASE 3: MAYORAL DEBATE ── -->
+    <article class="case-study" aria-labelledby="case3-title" style="border-bottom: none;">
+      <div class="case-header">
+        <div>
+          <div class="case-num">03 / 03</div>
+          <h2 id="case3-title">Crisis Comms —<br><em>live on camera</em></h2>
+        </div>
+        <div class="case-tags" aria-label="Topics">
+          <span class="tag">Crisis</span>
+          <span class="tag">Live Events</span>
+          <span class="tag">Issues Management</span>
+        </div>
+      </div>
+
+      <div class="case-body">
+        <div>
+          <div class="case-section-label">The situation</div>
+          <p class="case-text">October 2025. SAITSA hosted the Calgary Mayoral Debate — a live, streamed event with mayoral candidates, a student audience, and a YouTube broadcast. Audience members were to submit questions in real time via QR code during the debate.</p>
+          <p class="case-text">At the 54-minute mark, the host announced the QR code wasn't working. The audience question system had gone down live, on camera, with candidates at the podium.</p>
+        </div>
+        <div>
+          <div class="case-section-label">What happened next</div>
+          <p class="case-text">I was standing in the back of the room watching the proceedings when I heard the announcement. Ran to my laptop. Diagnosed the issue immediately: my team had used a QR code linked to a Tally default URL rather than the custom domain I'd built, and it was pointing to the pre-debate intake form rather than the live one. The QR code was static — it couldn't be updated remotely.</p>
+          <p class="case-text">Solution: copied the live form into the old form on Tally, effectively redirecting the existing link to the correct destination. New QR code generated, redistributed to the room. The host kept the debate moving with a smooth ad lib. The whole recovery took minutes. The debate concluded without further disruption — 4,300+ people watched the stream.</p>
+        </div>
+
+        <div class="video-wrap">
+          <iframe
+            src="https://www.youtube.com/embed/pVTivDERjRQ"
+            title="Saitsa's Board of Directors Presents: The Calgary Mayoral Debate (2025)"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen
+            loading="lazy">
+          </iframe>
+        </div>
+        <p class="video-note">Full debate on record — 4,300+ views. The host announces the QR code failure at the 54-minute mark; the audience question round resumes shortly after.</p>
+      </div>
+    </article>
+
+  </main>
+
+  <footer>
+    <div class="footer-copy">&copy; 2026 Jo Clermont</div>
+    <a href="mailto:hello@jordanclermont.com" class="footer-contact">hello@jordanclermont.com</a>
+  </footer>
+
+  <script>
+    // Intersection observer for subtle scroll reveals (supplements CSS animations for below-fold content)
+    if ('IntersectionObserver' in window) {
+      const articles = document.querySelectorAll('.case-study');
+      const obs = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+          if (e.isIntersecting) {
+            e.target.style.animationPlayState = 'running';
+            obs.unobserve(e.target);
+          }
+        });
+      }, { threshold: 0.08 });
+      articles.forEach(a => {
+        a.style.animationPlayState = 'paused';
+        obs.observe(a);
+      });
+    }
+  </script>
+</body>
+</html>

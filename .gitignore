@@ -104,6 +104,10 @@ dist
 # vitepress cache directory
 **/.vitepress/cache
 
+# Working/source files inside communications/ — keep local only, deploy just index.html
+communications/*
+!communications/index.html
+
 # Docusaurus cache and generated files
 .docusaurus
 
@@ -137,3 +141,4 @@ dist
 # Vite logs files
 vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
+.DS_Store
