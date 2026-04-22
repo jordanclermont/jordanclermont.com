@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Jordan Clermont</title>
+  <meta name="description" content="Musician, designer, writer, and person who thinks too hard about things that turn out to matter. Calgary, AB." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --night: #1C1726; --deep: #120E1A; --card: #241E32; --card-b: #2A2440;
+      --lavender: #E4DAE8; --muted: #A898B0; --dim: #7E6E90;
+      --rose: #C87E8A; --rose-lt: #D4909C; --gold: #D4A843;
+      --sage: #6E9E7A; --violet: #6E5A9E;
+      --glow-rose: rgba(200,126,138,0.08); --glow-gold: rgba(212,168,67,0.06);
+      --border: rgba(255,255,255,0.07); --border-h: rgba(255,255,255,0.15);
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--night); color: var(--lavender);
+      font-family: 'DM Sans', sans-serif; font-weight: 300;
+      line-height: 1.7; -webkit-font-smoothing: antialiased; overflow-x: hidden;
+    }
+    body::after {
+      content: ''; position: fixed; inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+      pointer-events: none; z-index: 10000;
+    }
+    @media (hover: hover) {
+      body { cursor: none; }
+      #cursor {
+        position: fixed; width: 10px; height: 10px; background: var(--gold);
+        border-radius: 50%; pointer-events: none; z-index: 99999;
+        transform: translate(-50%,-50%);
+        transition: width 0.2s, height 0.2s, background 0.2s, opacity 0.2s;
+        mix-blend-mode: screen; opacity: 0.8;
+      }
+      #cursor.hover { width: 44px; height: 44px; background: var(--rose); opacity: 0.4; }
+    }
+    @media (hover: none) { #cursor { display: none; } }
+    .glow { position: fixed; border-radius: 50%; pointer-events: none; z-index: 0; }
+    .glow-1 { top: -15%; right: -10%; width: 60vw; height: 60vw; background: radial-gradient(ellipse at 60% 40%, var(--glow-rose), transparent 65%); }
+    .glow-2 { bottom: -20%; left: -15%; width: 50vw; height: 50vw; background: radial-gradient(ellipse at 40% 60%, var(--glow-gold), transparent 65%); }
+    .page { position: relative; z-index: 1; max-width: 960px; margin: 0 auto; padding: 0 2rem; }
+
+    /* HERO */
+    .hero { min-height: 100vh; display: flex; align-items: center; padding: 6rem 0 4rem; }
+    .hero-inner { display: grid; grid-template-columns: 1fr 280px; gap: 4rem; align-items: center; width: 100%; }
+    @media (max-width: 760px) {
+      .hero-inner { grid-template-columns: 1fr; gap: 2.5rem; text-align: center; }
+      .hero-text { order: 2; } .hero-photo { order: 1; justify-self: center; }
+    }
+    .hero-label {
+      font-size: 0.72rem; font-weight: 600; letter-spacing: 0.16em;
+      text-transform: uppercase; color: var(--gold); margin-bottom: 1.5rem;
+      display: flex; align-items: center; gap: 0.75rem;
+      opacity: 0; animation: fadeIn 0.8s ease 0.1s forwards;
+    }
+    .hero-label::before { content: ''; width: 2rem; height: 1.5px; background: var(--gold); }
+    @media (max-width: 760px) { .hero-label { justify-content: center; } }
+    h1 {
+      font-family: 'Instrument Serif', serif; font-size: clamp(2.8rem, 6vw, 4.2rem);
+      font-weight: 400; line-height: 1.08; letter-spacing: -0.02em; color: var(--lavender);
+      opacity: 0; animation: fadeUp 0.8s ease 0.2s forwards;
+    }
+    h1 .accent { color: var(--gold); }
+    h1 em { font-style: italic; color: var(--rose); }
+    .tagline {
+      margin-top: 1.4rem; font-size: 1rem; color: var(--muted);
+      max-width: 440px; line-height: 1.75;
+      opacity: 0; animation: fadeUp 0.8s ease 0.35s forwards;
+    }
+    .secret-period { cursor: pointer; color: var(--muted); transition: color 0.3s, transform 0.3s; display: inline-block; position: relative; }
+    .secret-period:hover { color: var(--gold); transform: scale(2.5) rotate(180deg); }
+    .period-msg {
+      position: absolute; left: 2rem; top: -0.2rem; white-space: nowrap;
+      font-size: 0.7rem; font-family: 'DM Mono', monospace; color: var(--dim);
+      opacity: 0; transition: opacity 0.3s; pointer-events: none;
+    }
+    .secret-period:hover .period-msg { opacity: 1; }
+
+    /* PHOTO */
+    .hero-photo { position: relative; opacity: 0; animation: fadeIn 0.8s ease 0.4s forwards; }
+    .hero-photo img {
+      width: 280px; height: 340px; object-fit: cover; object-position: center top;
+      border-radius: 4px; border: 1px solid var(--border); display: block;
+      filter: saturate(0.9); transition: filter 0.4s ease;
+    }
+    .hero-photo img:hover { filter: saturate(1.1); }
+    .hero-photo::after {
+      content: ''; position: absolute; inset: 8px -8px -8px 8px;
+      border: 1px solid var(--border); border-radius: 4px; z-index: -1;
+    }
+    .photo-egg {
+      position: absolute; bottom: -2rem; left: 0;
+      font-family: 'DM Mono', monospace; font-size: 0.65rem; color: var(--dim);
+      opacity: 0; transition: opacity 0.3s;
+    }
+    .photo-egg.show { opacity: 1; }
+
+    .divider { width: 100%; height: 1px; background: var(--border); margin: 1rem 0 4rem; }
+
+    /* DOORS */
+    .doors-section { padding-bottom: 5rem; }
+    .doors-label {
+      font-size: 0.72rem; font-weight: 600; letter-spacing: 0.16em;
+      text-transform: uppercase; color: var(--gold); margin-bottom: 2rem;
+      display: flex; align-items: center; gap: 0.75rem;
+    }
+    .doors-label::before { content: ''; width: 1.25rem; height: 1.5px; background: var(--gold); }
+    .doors { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; }
+    @media (max-width: 600px) { .doors { grid-template-columns: 1fr; } }
+    .door {
+      position: relative; display: block; padding: 2.2rem 2rem;
+      background: var(--card); border: 1px solid var(--border); border-radius: 4px;
+      text-decoration: none; color: var(--lavender); overflow: hidden;
+      transition: border-color 0.35s, transform 0.25s, box-shadow 0.35s;
+    }
+    .door::after {
+      content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 2px;
+      opacity: 0; transition: opacity 0.3s;
+    }
+    .door:hover { transform: translateY(-3px); box-shadow: 0 8px 32px rgba(0,0,0,0.15); }
+    .door:hover::after { opacity: 1; }
+    .door-music::after   { background: linear-gradient(90deg, var(--rose), var(--gold)); }
+    .door-design::after  { background: linear-gradient(90deg, var(--violet), var(--rose)); }
+    .door-comms::after   { background: linear-gradient(90deg, var(--sage), var(--gold)); }
+    .door-writing::after { background: linear-gradient(90deg, var(--gold), var(--rose)); }
+    .door-music:hover   { border-color: var(--rose); }
+    .door-design:hover  { border-color: var(--violet); }
+    .door-comms:hover   { border-color: var(--sage); }
+    .door-writing:hover { border-color: var(--gold); }
+    .door-number {
+      font-size: 1.6rem; font-weight: 700; color: var(--dim); line-height: 1;
+      margin-bottom: 0.9rem; transition: color 0.3s;
+    }
+    .door-music:hover .door-number   { color: var(--rose); }
+    .door-design:hover .door-number  { color: var(--violet); }
+    .door-comms:hover .door-number   { color: var(--sage); }
+    .door-writing:hover .door-number { color: var(--gold); }
+    .door-label {
+      font-family: 'Instrument Serif', serif; font-size: 1.5rem; font-weight: 400;
+      display: block; margin-bottom: 0.5rem; line-height: 1.15;
+    }
+    .door-sub { font-size: 0.84rem; color: var(--muted); line-height: 1.6; display: block; }
+    .door-arrow {
+      position: absolute; bottom: 1.6rem; right: 1.6rem; font-size: 0.85rem;
+      color: var(--dim); transition: color 0.2s, transform 0.2s;
+    }
+    .door:hover .door-arrow { color: var(--lavender); transform: translate(3px, -3px); }
+
+    /* QUOTE */
+    .bottom-quote { padding: 4rem 0 3rem; text-align: center; border-top: 1px solid var(--border); }
+    .bottom-quote blockquote {
+      font-family: 'Instrument Serif', serif; font-size: clamp(1.15rem, 2.5vw, 1.5rem);
+      font-style: italic; color: rgba(228,218,232,0.6); max-width: 520px;
+      margin: 0 auto; line-height: 1.6;
+    }
+
+    /* FOOTER */
+    footer {
+      padding: 2rem 0; display: flex; justify-content: space-between;
+      align-items: center; flex-wrap: wrap; gap: 1rem; border-top: 1px solid var(--border);
+    }
+    .footer-links { display: flex; gap: 1.5rem; }
+    .footer-links a {
+      font-size: 0.75rem; color: var(--dim); text-decoration: none;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      font-family: 'DM Mono', monospace; transition: color 0.25s;
+    }
+    .footer-links a:hover { color: var(--gold); }
+    .footer-copy { font-size: 0.7rem; color: rgba(255,255,255,0.15); font-family: 'DM Mono', monospace; }
+
+    .secret-corner {
+      position: fixed; bottom: 0.8rem; right: 0.8rem; font-size: 0.6rem;
+      color: var(--night); font-family: 'DM Mono', monospace; letter-spacing: 0.12em;
+      transition: color 0.4s; user-select: none; z-index: 100;
+    }
+    .secret-corner:hover { color: var(--dim); }
+
+    #egg {
+      display: none; position: fixed; inset: 0; background: var(--deep); z-index: 90000;
+      align-items: center; justify-content: center; flex-direction: column; gap: 1rem;
+      color: var(--lavender); font-family: 'Instrument Serif', serif; font-size: 1.5rem;
+      text-align: center; padding: 2rem;
+    }
+    #egg.show { display: flex; }
+    #egg .egg-emoji { font-size: 4rem; animation: float 3s ease-in-out infinite; }
+    #egg .egg-text { max-width: 400px; line-height: 1.5; }
+    #egg .egg-text em { color: var(--rose); }
+    #egg .egg-close {
+      margin-top: 2rem; font-family: 'DM Mono', monospace; font-size: 0.72rem;
+      letter-spacing: 0.12em; color: var(--dim); cursor: pointer;
+      text-transform: uppercase; transition: color 0.2s;
+    }
+    #egg .egg-close:hover { color: var(--gold); }
+
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-12px); } }
+    .reveal { opacity: 0; transform: translateY(18px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    @media (max-width: 760px) {
+      .hero { min-height: auto; padding: 5rem 0 3rem; }
+      .hero-photo img { width: 200px; height: 250px; }
+      .bottom-quote { padding: 3rem 0 2rem; }
+      footer { flex-direction: column; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+  <div id="cursor"></div>
+  <div class="glow glow-1"></div>
+  <div class="glow glow-2"></div>
+  <div id="egg">
+    <div class="egg-emoji">🌱</div>
+    <div class="egg-text">you found it.<br><em>the watercourse way.</em><br><br>water doesn't push. it finds the open path.</div>
+    <div class="egg-close" onclick="document.getElementById('egg').classList.remove('show')">← return</div>
+  </div>
+  <div class="page">
+    <section class="hero">
+      <div class="hero-inner">
+        <div class="hero-text">
+          <div class="hero-label">Calgary, Alberta</div>
+          <h1><span id="nameClick" style="cursor:pointer;user-select:none">Jordan</span><br><em>Clermont</em><span class="accent">.</span></h1>
+          <p class="tagline">Musician, designer, writer, and person who thinks too hard about things that turn out to matter<span class="secret-period">.<span class="period-msg">← the period of my life</span></span></p>
+        </div>
+        <div class="hero-photo">
+          <img src="jo.jpg" alt="Jordan Clermont" id="jo-photo" />
+          <div class="photo-egg" id="photo-egg"></div>
+        </div>
+      </div>
+    </section>
+    <div class="divider"></div>
+    <section class="doors-section">
+      <div class="doors-label reveal">What I do</div>
+      <nav class="doors">
+        <a href="music.html" class="door door-music reveal" data-cursor="hover">
+          <div class="door-number">01</div>
+          <span class="door-label">Music</span>
+          <span class="door-sub">Solo work, live shows & Little Super Dangerous — indie rock from Calgary.</span>
+          <span class="door-arrow">↗</span>
+        </a>
+        <a href="design.html" class="door door-design reveal" data-cursor="hover">
+          <div class="door-number">02</div>
+          <span class="door-label">Design</span>
+          <span class="door-sub">Graphic design, visual identity & the things that make people stop scrolling.</span>
+          <span class="door-arrow">↗</span>
+        </a>
+        <a href="comms.html" class="door door-comms reveal" data-cursor="hover">
+          <div class="door-number">03</div>
+          <span class="door-label">Communications</span>
+          <span class="door-sub">Marketing, strategy & making organizations say what they actually mean.</span>
+          <span class="door-arrow">↗</span>
+        </a>
+        <a href="writing.html" class="door door-writing reveal" data-cursor="hover">
+          <div class="door-number">04</div>
+          <span class="door-label">Oh the Humanities!</span>
+          <span class="door-sub">Essays on AI, creativity, copyright & what it means to be human right now.</span>
+          <span class="door-arrow">↗</span>
+        </a>
+      </nav>
+    </section>
+    <section class="bottom-quote">
+      <blockquote class="reveal">"We built AI in our own image. Now we're surprised it has our flaws."</blockquote>
+    </section>
+    <footer>
+      <div class="footer-links">
+        <a href="mailto:hello@jordanclermont.com">email</a>
+        <a href="https://linkedin.com/in/jordanclermont" target="_blank" rel="noopener">linkedin</a>
+        <a href="https://instagram.com/jordanclermont" target="_blank" rel="noopener">instagram</a>
+      </div>
+      <div class="footer-copy">© 2026 Jo Clermont</div>
+    </footer>
+  </div>
+  <div class="secret-corner" title="you're looking too closely">· · ·</div>
+  <script>
+    const cursor = document.getElementById('cursor');
+    if (cursor && window.matchMedia('(hover: hover)').matches) {
+      document.addEventListener('mousemove', e => { cursor.style.left = e.clientX + 'px'; cursor.style.top = e.clientY + 'px'; });
+      document.querySelectorAll('[data-cursor="hover"], a, button').forEach(el => {
+        el.addEventListener('mouseenter', () => cursor.classList.add('hover'));
+        el.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
+      });
+    }
+    const konami = ['ArrowUp','ArrowUp','ArrowDown','ArrowDown','ArrowLeft','ArrowRight','ArrowLeft','ArrowRight','b','a'];
+    let ki = 0;
+    document.addEventListener('keydown', e => {
+      if (e.key === konami[ki]) { ki++; if (ki === konami.length) { document.getElementById('egg').classList.add('show'); ki = 0; } } else { ki = 0; }
+    });
+    let clicks = 0;
+    const photo = document.getElementById('jo-photo');
+    const photoEgg = document.getElementById('photo-egg');
+    const messages = ['','','','yes, that\'s me.','still me.','you can stop now.','okay I respect the commitment.','fine. have a 🌱.','seriously though.','this is the last one.','...or is it?','it was. goodnight.'];
+    photo.addEventListener('click', () => {
+      clicks++;
+      if (clicks >= 3 && clicks < messages.length) { photoEgg.textContent = messages[clicks]; photoEgg.classList.add('show'); }
+      else if (clicks >= messages.length) { photoEgg.textContent = '🌱'; photoEgg.classList.add('show'); }
+    });
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry, i) => { if (entry.isIntersecting) { setTimeout(() => entry.target.classList.add('visible'), i * 80); observer.unobserve(entry.target); } });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+    reveals.forEach(el => observer.observe(el));
+    console.log('%c👋 hey.', 'font-size:2rem; color:#C87E8A;');
+    console.log('%cyou opened the console. respect.', 'color:#A898B0; font-size:0.9rem;');
+    console.log('%cif you\'re curious or want to work together → hello@jordanclermont.com', 'color:#D4A843; font-size:0.85rem;');
+    console.log('%c🌱 the watercourse way.', 'color:#6E9E7A; font-size:0.8rem;');
+
+    // Name cycling egg - click Jordan 7 times
+    const nameEl = document.getElementById('nameClick');
+    let nameClicks = 0;
+    const nicknames = ['Jordan','Jo','JoCler','Vagrant Jo','J-Money','The Clerminator','🌱'];
+    nameEl.addEventListener('click', () => {
+      nameClicks++;
+      if (nameClicks < nicknames.length) {
+        nameEl.textContent = nicknames[nameClicks];
+      } else {
+        nameClicks = 0;
+        nameEl.textContent = nicknames[0];
+      }
+    });
+
+    // Tab title egg
+    const tabTitles = ['Jordan Clermont','Jo Clermont','oh hey','still here?','Jordan Clermont'];
+    let ti = 0;
+    setInterval(() => {
+      if (document.hidden) { ti = (ti + 1) % tabTitles.length; document.title = tabTitles[ti]; }
+      else { document.title = tabTitles[0]; ti = 0; }
+    }, 4000);
+  </script>
+</body>
+</html>
