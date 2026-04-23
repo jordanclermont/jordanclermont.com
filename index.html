@@ -7,303 +7,11 @@
   <meta name="description" content="Communicator, designer, musician, writer — still figuring out how those fit in one sentence. Calgary, AB." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400&display=swap" rel="stylesheet" />
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-    :root {
-      --hero-bg:    #3d5f6e;
-      --hero-text:  #f0ece3;
-      --hero-muted: #c2d4db;
-      --sky:        #f0ece3;
-      --ink:        #1f1c17;
-      --muted:      #6b6358;
-      --wheat:      #c4963a;
-      --sage:       #5a7c5e;
-      --sage-deep:  #3d5c40;
-      --clay:       #b5623a;
-      --bigsky:     #5b8aad;
-      --border:     #cec7b5;
-      --focus:      #2a7fff;
-      --max:        1100px;
-    }
-
-    .skip-link {
-      position: absolute;
-      top: -100%;
-      left: 1rem;
-      padding: 0.5rem 1rem;
-      background: var(--ink);
-      color: var(--sky);
-      font-family: 'DM Sans', sans-serif;
-      font-size: 0.85rem;
-      text-decoration: none;
-      z-index: 10000;
-      border-radius: 0 0 4px 4px;
-    }
-    .skip-link:focus { top: 0; }
-
-    :focus-visible {
-      outline: 2px solid var(--focus);
-      outline-offset: 3px;
-    }
-
-    html { scroll-behavior: smooth; }
-
-    @media (prefers-reduced-motion: reduce) {
-      *, *::before, *::after {
-        animation-duration: 0.01ms !important;
-        transition-duration: 0.01ms !important;
-      }
-      html { scroll-behavior: auto; }
-    }
-
-    body {
-      background: var(--sky);
-      color: var(--ink);
-      font-family: 'DM Sans', sans-serif;
-      font-weight: 300;
-      min-height: 100vh;
-      -webkit-font-smoothing: antialiased;
-    }
-
-    .horizon-bar {
-      position: fixed;
-      bottom: 0; left: 0; right: 0;
-      height: 3px;
-      background: linear-gradient(90deg, var(--sage), var(--bigsky) 30%, var(--wheat) 60%, var(--clay) 85%, var(--sage-deep));
-      z-index: 100;
-    }
-
-    /* ── HERO ── */
-    .hero {
-      background: var(--hero-bg);
-      padding: 4rem 3rem;
-    }
-
-    .hero-inner {
-      max-width: var(--max);
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: 1fr 200px;
-      gap: 2rem;
-      align-items: end;
-    }
-
-    h1 {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(3.5rem, 9vw, 6.5rem);
-      font-weight: 700;
-      line-height: 0.9;
-      letter-spacing: -0.03em;
-      color: var(--hero-text);
-    }
-    h1 .last {
-      display: block;
-      font-style: italic;
-      font-weight: 600;
-    }
-
-    .tagline {
-      margin-top: 1.5rem;
-      font-size: 1rem;
-      color: var(--hero-muted);
-      max-width: 400px;
-      line-height: 1.7;
-    }
-
-    .hero-portrait img {
-      width: 100%;
-      aspect-ratio: 3/4;
-      object-fit: cover;
-      object-position: center top;
-      display: block;
-    }
-
-    /* ── DOORS ── */
-    .doors-section {
-      max-width: var(--max);
-      margin: 0 auto;
-      padding: 0 3rem;
-    }
-
-    .doors-layout {
-      display: grid;
-      grid-template-columns: 200px 1fr;
-      gap: 2rem;
-      padding-top: 2.5rem;
-    }
-
-    .doors-sidebar-title {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.4rem;
-      font-style: italic;
-      color: var(--ink);
-      line-height: 1.3;
-      margin-bottom: 0.8rem;
-    }
-
-    .doors-sidebar p {
-      font-size: 0.85rem;
-      color: var(--muted);
-      line-height: 1.7;
-    }
-
-    .doors-list {
-      border-top: 1px solid var(--border);
-    }
-
-    .door {
-      display: grid;
-      grid-template-columns: 1fr auto auto;
-      align-items: start;
-      gap: 1.5rem;
-      padding: 1.8rem 0;
-      border-bottom: 1px solid var(--border);
-      text-decoration: none;
-      color: var(--ink);
-      transition: padding-left 0.25s ease;
-    }
-    .door:hover { padding-left: 0.6rem; }
-
-    .door-info { display: flex; flex-direction: column; gap: 0.4rem; }
-
-    .door-label {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(1.8rem, 3.5vw, 2.6rem);
-      font-weight: 400;
-      transition: color 0.2s;
-    }
-    .door:hover .door-label { color: var(--hero-bg); }
-
-    .door-desc {
-      font-size: 0.85rem;
-      color: var(--muted);
-      line-height: 1.5;
-    }
-
-    .door-tags {
-      display: flex;
-      gap: 0.5rem;
-      align-items: center;
-    }
-    .door-tag {
-      font-family: 'DM Mono', monospace;
-      font-size: 0.62rem;
-      color: var(--muted);
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-    }
-    .door-sep { font-size: 0.5rem; color: var(--border); }
-
-    .door-arrow {
-      font-size: 1.2rem;
-      color: var(--border);
-      transition: color 0.2s, transform 0.2s;
-    }
-    .door:hover .door-arrow {
-      color: var(--hero-bg);
-      transform: translate(3px, -3px);
-    }
-
-    /* ── FOOTER ── */
-    footer {
-      max-width: var(--max);
-      margin: 0 auto;
-      padding: 2.5rem 3rem 4rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 1rem;
-    }
-
-    .footer-copy {
-      font-family: 'DM Mono', monospace;
-      font-size: 0.65rem;
-      color: var(--muted);
-    }
-    .footer-quote {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 0.88rem;
-      font-style: italic;
-      color: var(--muted);
-      text-align: center;
-      flex: 1;
-      min-width: 200px;
-    }
-    .footer-links { display: flex; gap: 1.5rem; }
-    .footer-links a {
-      font-family: 'DM Mono', monospace;
-      font-size: 0.72rem;
-      color: var(--muted);
-      text-decoration: none;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      transition: color 0.2s;
-    }
-    .footer-links a:hover { color: var(--ink); }
-
-    /* ── EASTER EGGS ── */
-    .secret-corner {
-      position: fixed;
-      bottom: 1rem; right: 1rem;
-      font-size: 0.55rem;
-      color: var(--sky);
-      font-family: 'DM Mono', monospace;
-      letter-spacing: 0.15em;
-      transition: color 0.4s;
-      user-select: none;
-      z-index: 99;
-    }
-    .secret-corner:hover { color: var(--muted); }
-
-    #egg {
-      display: none;
-      position: fixed;
-      inset: 0;
-      background: var(--ink);
-      z-index: 9999;
-      align-items: center;
-      justify-content: center;
-      flex-direction: column;
-      gap: 1.2rem;
-      text-align: center;
-      padding: 2rem;
-    }
-    #egg.show { display: flex; }
-    #egg .egg-emoji { font-size: 5rem; animation: float 3s ease-in-out infinite; }
-    #egg .egg-text { font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; font-style: italic; color: var(--sky); max-width: 380px; line-height: 1.4; }
-    #egg .egg-sub { font-family: 'DM Mono', monospace; font-size: 0.72rem; color: var(--muted); letter-spacing: 0.08em; }
-    #egg .egg-close { margin-top: 1rem; font-family: 'DM Mono', monospace; font-size: 0.68rem; color: var(--muted); cursor: pointer; letter-spacing: 0.12em; text-transform: uppercase; transition: color 0.2s; }
-    #egg .egg-close:hover { color: var(--wheat); }
-
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(18px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-    @keyframes float {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-14px); }
-    }
-    .hero { opacity: 0; animation: fadeUp 0.8s ease 0.1s forwards; }
-    .doors-layout { opacity: 0; animation: fadeUp 0.7s ease 0.3s forwards; }
-    footer { opacity: 0; animation: fadeUp 0.7s ease 0.5s forwards; }
-
-    @media (max-width: 680px) {
-      .hero { padding: 2.5rem 1.5rem; }
-      .hero-inner { grid-template-columns: 1fr; }
-      .hero-portrait { width: 150px; order: -1; }
-      .doors-section { padding: 0 1.5rem; }
-      .doors-layout { grid-template-columns: 1fr; gap: 1rem; }
-      .door { grid-template-columns: 1fr auto; }
-      .door-tags { display: none; }
-      footer { padding: 2rem 1.5rem 4rem; }
-    }
-  </style>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@400;500&family=DM+Mono:wght@400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/site.css" />
 </head>
 
-<body>
+<body class="page-landing">
   <!--
     ┌─────────────────────────────────────────┐
     │  you're reading the source code.        │
@@ -329,7 +37,7 @@
       <div class="hero-inner">
         <div>
           <h1>
-            <span id="nameClick" style="cursor:pointer;user-select:none;">Jordan</span><br>
+            <span id="nameClick">Jordan</span><br>
             <span class="last">Clermont.</span>
           </h1>
           <p class="tagline">Communicator, designer, musician, writer &mdash; still figuring out how those fit in one sentence.</p>
@@ -413,27 +121,51 @@
   <div class="secret-corner" aria-hidden="true">· · ·</div>
 
   <script>
+    // cycle nicknames on name click
     const nameEl = document.getElementById('nameClick');
-    const nicknames = ['Jordan','Jo','JoCler','Vagrant Jo','J-Money','The Clerminator','🌾'];
+    const nicknames = ['Jordan', 'Jo', 'JoCler', 'Vagrant Jo', 'J-Money', 'The Clerminator', '🌾'];
     let ni = 0;
-    nameEl.addEventListener('click', () => { ni = (ni + 1) % nicknames.length; nameEl.textContent = nicknames[ni]; });
+    nameEl.addEventListener('click', () => {
+      ni = (ni + 1) % nicknames.length;
+      nameEl.textContent = nicknames[ni];
+    });
 
+    // portrait — tooltip patter after 3+ clicks
     const photo = document.getElementById('jo-photo');
-    const msgs = ['still me.','you can stop.','okay i respect it.','🌾','seriously though.','goodnight.'];
+    const photoMsgs = ['still me.', 'you can stop.', 'okay i respect it.', '🌾', 'seriously though.', 'goodnight.'];
     let pi = 0;
-    photo.addEventListener('click', () => { pi++; if (pi >= 3) photo.title = msgs[Math.min(pi - 3, msgs.length - 1)]; });
+    photo.addEventListener('click', () => {
+      pi++;
+      if (pi >= 3) photo.title = photoMsgs[Math.min(pi - 3, photoMsgs.length - 1)];
+    });
 
-    const konami = [38,38,40,40,37,39,37,39,66,65];
+    // konami code → egg
+    const konami = [38, 38, 40, 40, 37, 39, 37, 39, 66, 65];
+    const egg = document.getElementById('egg');
     let ki = 0;
-    document.addEventListener('keydown', e => { ki = (e.keyCode === konami[ki]) ? ki + 1 : 0; if (ki === konami.length) { document.getElementById('egg').classList.add('show'); ki = 0; } });
-
+    document.addEventListener('keydown', e => {
+      ki = (e.keyCode === konami[ki]) ? ki + 1 : 0;
+      if (ki === konami.length) { egg.classList.add('show'); ki = 0; }
+    });
     const eggClose = document.querySelector('.egg-close');
-    eggClose.addEventListener('click', () => document.getElementById('egg').classList.remove('show'));
-    eggClose.addEventListener('keydown', e => { if (e.key === 'Enter') document.getElementById('egg').classList.remove('show'); });
+    const hideEgg = () => egg.classList.remove('show');
+    eggClose.addEventListener('click', hideEgg);
+    eggClose.addEventListener('keydown', e => {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); hideEgg(); }
+    });
 
-    const titles = ['Jordan Clermont','oh hey','still here?','Jordan Clermont'];
+    // tab-title patter while away
+    const titles = ['Jordan Clermont', 'oh hey', 'still here?', 'Jordan Clermont'];
     let ti = 0;
-    setInterval(() => { if (document.hidden) { ti = (ti + 1) % titles.length; document.title = titles[ti]; } else { document.title = titles[0]; ti = 0; } }, 3500);
+    setInterval(() => {
+      if (document.hidden) {
+        ti = (ti + 1) % titles.length;
+        document.title = titles[ti];
+      } else {
+        document.title = titles[0];
+        ti = 0;
+      }
+    }, 3500);
   </script>
 </body>
 </html>
