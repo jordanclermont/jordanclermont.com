@@ -326,7 +326,7 @@ body {
 }
 
 /* ==========================================================================
-   COMMUNICATIONS PAGE  (body.page-comms)
+   SUBPAGES  (body.page-sub — shared by comms, design, music, writing)
    ========================================================================== */
 
 /* nav */
@@ -357,7 +357,7 @@ body {
 }
 
 /* hero */
-.page-comms .hero { padding: 3rem 3rem 4rem; }
+.page-sub .hero { padding: 3rem 3rem 4rem; }
 
 .hero-kicker {
   margin-bottom: 1rem;
@@ -367,7 +367,7 @@ body {
   letter-spacing: 0.15em;
   text-transform: uppercase;
 }
-.page-comms h1 {
+.page-sub h1 {
   font-family: 'Cormorant Garamond', serif;
   font-size: clamp(3rem, 8vw, 5.5rem);
   font-weight: 700;
@@ -375,7 +375,7 @@ body {
   letter-spacing: -0.03em;
   color: var(--hero-text);
 }
-.page-comms h1 em {
+.page-sub h1 em {
   display: block;
   font-style: italic;
   font-weight: 600;
@@ -412,7 +412,7 @@ body {
 }
 
 /* main + case studies */
-.page-comms main {
+.page-sub main {
   max-width: var(--max);
   margin: 0 auto;
   padding: 0 3rem;
@@ -442,7 +442,7 @@ body {
   font-size: 0.72rem;
   letter-spacing: 0.15em;
 }
-.page-comms h2 {
+.page-sub h2 {
   font-family: 'Cormorant Garamond', serif;
   font-size: clamp(2rem, 4vw, 3rem);
   font-weight: 400;
@@ -598,8 +598,8 @@ body {
   letter-spacing: 0.05em;
 }
 
-/* comms footer */
-.page-comms footer {
+/* subpage footer */
+.page-sub footer {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -621,11 +621,11 @@ body {
 }
 .footer-contact:hover { color: var(--ink); }
 
-/* comms responsive */
+/* subpage responsive */
 @media (max-width: 680px) {
   .site-nav { padding: 1rem 1.5rem; }
-  .page-comms .hero { padding: 2rem 1.5rem 3rem; }
-  .page-comms main { padding: 0 1.5rem; }
+  .page-sub .hero { padding: 2rem 1.5rem 3rem; }
+  .page-sub main { padding: 0 1.5rem; }
 
   .case-header { grid-template-columns: 1fr; }
   .case-body { grid-template-columns: 1fr; gap: 1.5rem; }
@@ -636,5 +636,102 @@ body {
 
   .hero-meta { gap: 1.5rem; }
 
-  .page-comms footer { padding: 2rem 1.5rem 5rem; }
+  .page-sub footer { padding: 2rem 1.5rem 5rem; }
+}
+
+/* ==========================================================================
+   MUSIC PAGE — releases grid
+   ========================================================================== */
+.releases-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 2rem;
+  grid-column: 1 / -1;
+}
+.release-card {
+  border: 1px solid var(--border);
+  transition: border-color 0.2s;
+}
+.release-card:hover { border-color: var(--muted); }
+
+.release-art {
+  aspect-ratio: 1;
+  overflow: hidden;
+  background: var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.release-art img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.release-art-placeholder {
+  color: var(--muted);
+  font-family: 'DM Mono', monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.release-info { padding: 1.2rem; }
+.release-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.3rem;
+  font-weight: 400;
+  margin-bottom: 0.3rem;
+}
+.release-detail {
+  color: var(--muted);
+  font-family: 'DM Mono', monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+/* ==========================================================================
+   WRITING PAGE — essay list
+   ========================================================================== */
+.essay-list {
+  border-top: 1px solid var(--border);
+}
+.essay-entry {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: start;
+  gap: 1.5rem;
+  padding: 2.2rem 0;
+  border-bottom: 1px solid var(--border);
+  text-decoration: none;
+  color: var(--ink);
+  transition: padding-left 0.25s ease;
+}
+.essay-entry:hover { padding-left: 0.6rem; }
+
+.essay-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(1.5rem, 3vw, 2.1rem);
+  font-weight: 400;
+  line-height: 1.2;
+  transition: color 0.2s;
+}
+.essay-entry:hover .essay-title { color: var(--hero-bg); }
+
+.essay-excerpt {
+  margin-top: 0.5rem;
+  color: var(--muted);
+  font-size: 1rem;
+  line-height: 1.65;
+  max-width: 600px;
+}
+.essay-date {
+  color: var(--muted);
+  font-family: 'DM Mono', monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  padding-top: 0.3rem;
+}
+
+@media (max-width: 680px) {
+  .releases-grid { grid-template-columns: 1fr 1fr; gap: 1rem; }
+  .essay-entry { grid-template-columns: 1fr; gap: 0.5rem; }
 }

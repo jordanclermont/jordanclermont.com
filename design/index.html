@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Design — Jordan Clermont</title>
+  <meta name="description" content="Visual identity, print, and digital design work by Jordan Clermont." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@400;500&family=DM+Mono:wght@400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../assets/site.css" />
+</head>
+
+<body class="page-sub page-design">
+  <a href="#main" class="skip-link">Skip to content</a>
+  <div class="horizon-bar" aria-hidden="true"></div>
+
+  <nav class="site-nav" aria-label="Site navigation">
+    <div class="site-nav-inner">
+      <a href="/" class="nav-back">← Jordan Clermont</a>
+      <span class="nav-label">Design</span>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <div class="hero-inner">
+      <div class="hero-kicker">Portfolio — Design</div>
+      <h1>Giving ideas<br><em>a visual language.</em></h1>
+      <p class="hero-desc">Visual identity, print, and digital design — from brand systems and publications to the small details that make people trust what they're looking at.</p>
+    </div>
+  </header>
+
+  <main id="main">
+
+    <!-- ── CASE 1: STUDENT HANDBOOK ── -->
+    <article class="case-study" aria-labelledby="case1-title">
+      <div class="case-header">
+        <div>
+          <div class="case-num">01</div>
+          <h2 id="case1-title">Student Handbook<br>Visual Identity</h2>
+        </div>
+        <div class="case-tags" aria-label="Topics">
+          <span class="tag">Brand</span>
+          <span class="tag">Print</span>
+          <span class="tag">Publication</span>
+        </div>
+      </div>
+
+      <div class="case-body">
+        <div>
+          <div class="case-section-label">The brief</div>
+          <p class="case-text">SAITSA's student handbook is the single most-distributed print piece the organization produces — 70+ pages, handed to every incoming student. It needed a visual identity that felt intentional, cohesive, and worth keeping rather than recycling.</p>
+        </div>
+        <div>
+          <div class="case-section-label">The approach</div>
+          <p class="case-text">Built a design system grounded in consistent typography, structured layouts, and a colour palette that carried across both print and digital touchpoints. The same visual language later informed the email bulletin rebuild and event materials.</p>
+        </div>
+
+        <!-- image slot: before/after or spreads go here -->
+      </div>
+    </article>
+
+    <!-- ── CASE 2: PLACEHOLDER ── -->
+    <article class="case-study" aria-labelledby="case2-title">
+      <div class="case-header">
+        <div>
+          <div class="case-num">02</div>
+          <h2 id="case2-title">Brand Systems<br><em>&amp; Identity</em></h2>
+        </div>
+        <div class="case-tags" aria-label="Topics">
+          <span class="tag">Identity</span>
+          <span class="tag">Guidelines</span>
+          <span class="tag">Digital</span>
+        </div>
+      </div>
+
+      <div class="case-body">
+        <div>
+          <div class="case-section-label">The brief</div>
+          <p class="case-text">Case study content coming soon — this section will feature brand identity work, visual systems, and the design decisions behind them.</p>
+        </div>
+        <div>
+          <div class="case-section-label">The approach</div>
+          <p class="case-text">Portfolio images and detailed write-ups will be added here.</p>
+        </div>
+      </div>
+    </article>
+
+    <!-- ── CASE 3: PLACEHOLDER ── -->
+    <article class="case-study" aria-labelledby="case3-title">
+      <div class="case-header">
+        <div>
+          <div class="case-num">03</div>
+          <h2 id="case3-title">Web &amp; Digital<br><em>Design</em></h2>
+        </div>
+        <div class="case-tags" aria-label="Topics">
+          <span class="tag">Web</span>
+          <span class="tag">UI</span>
+          <span class="tag">Responsive</span>
+        </div>
+      </div>
+
+      <div class="case-body">
+        <div>
+          <div class="case-section-label">The brief</div>
+          <p class="case-text">Case study content coming soon — this section will feature web and digital design projects.</p>
+        </div>
+        <div>
+          <div class="case-section-label">The approach</div>
+          <p class="case-text">Portfolio images and detailed write-ups will be added here.</p>
+        </div>
+      </div>
+    </article>
+
+  </main>
+
+  <footer>
+    <div class="footer-copy">&copy; 2026 Jo Clermont</div>
+    <a href="mailto:hello@jordanclermont.com" class="footer-contact">hello@jordanclermont.com</a>
+  </footer>
+
+  <script>
+    if ('IntersectionObserver' in window) {
+      const articles = document.querySelectorAll('.case-study');
+      const obs = new IntersectionObserver(entries => {
+        entries.forEach(e => {
+          if (e.isIntersecting) {
+            e.target.style.animationPlayState = 'running';
+            obs.unobserve(e.target);
+          }
+        });
+      }, { threshold: 0.08 });
+      articles.forEach(a => {
+        a.style.animationPlayState = 'paused';
+        obs.observe(a);
+      });
+    }
+  </script>
+</body>
+</html>

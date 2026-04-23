@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Music — Jordan Clermont</title>
+  <meta name="description" content="Solo work and Little Super Dangerous — indie rock from the prairies." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@400;500&family=DM+Mono:wght@400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../assets/site.css" />
+</head>
+
+<body class="page-sub page-music">
+  <a href="#main" class="skip-link">Skip to content</a>
+  <div class="horizon-bar" aria-hidden="true"></div>
+
+  <nav class="site-nav" aria-label="Site navigation">
+    <div class="site-nav-inner">
+      <a href="/" class="nav-back">← Jordan Clermont</a>
+      <span class="nav-label">Music</span>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <div class="hero-inner">
+      <div class="hero-kicker">Music</div>
+      <h1>Indie rock<br><em>from the prairies.</em></h1>
+      <p class="hero-desc">Solo work and Little Super Dangerous — guitar-driven songs about small towns, big feelings, and the drive between.</p>
+    </div>
+  </header>
+
+  <main id="main">
+
+    <!-- ── ABOUT ── -->
+    <section class="case-study" aria-labelledby="about-title">
+      <div class="case-header">
+        <div>
+          <div class="case-num">The project</div>
+          <h2 id="about-title">Little Super<br>Dangerous</h2>
+        </div>
+        <div class="case-tags" aria-label="Topics">
+          <span class="tag">Indie Rock</span>
+          <span class="tag">Calgary</span>
+        </div>
+      </div>
+
+      <div class="case-body">
+        <div>
+          <div class="case-section-label">The band</div>
+          <p class="case-text">Little Super Dangerous is an indie rock project rooted in the Alberta prairies. Guitar-forward, lyrically driven, and built on the belief that a good song earns its length.</p>
+        </div>
+        <div>
+          <div class="case-section-label">Solo work</div>
+          <p class="case-text">Alongside the band, solo recordings and collaborations — songs that don't quite fit the band's shape but still needed to exist.</p>
+        </div>
+
+        <!-- embed slot: Spotify/Bandcamp/SoundCloud player goes here -->
+      </div>
+    </section>
+
+    <!-- ── RELEASES ── -->
+    <section class="case-study" aria-labelledby="releases-title">
+      <div class="case-header">
+        <div>
+          <div class="case-num">Discography</div>
+          <h2 id="releases-title">Releases</h2>
+        </div>
+      </div>
+
+      <div class="case-body">
+        <div class="releases-grid">
+          <div class="release-card">
+            <div class="release-art">
+              <span class="release-art-placeholder">Album art</span>
+            </div>
+            <div class="release-info">
+              <div class="release-title">Release Title</div>
+              <div class="release-detail">Year · Format</div>
+            </div>
+          </div>
+          <div class="release-card">
+            <div class="release-art">
+              <span class="release-art-placeholder">Album art</span>
+            </div>
+            <div class="release-info">
+              <div class="release-title">Release Title</div>
+              <div class="release-detail">Year · Format</div>
+            </div>
+          </div>
+          <div class="release-card">
+            <div class="release-art">
+              <span class="release-art-placeholder">Album art</span>
+            </div>
+            <div class="release-info">
+              <div class="release-title">Release Title</div>
+              <div class="release-detail">Year · Format</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="footer-copy">&copy; 2026 Jo Clermont</div>
+    <a href="mailto:hello@jordanclermont.com" class="footer-contact">hello@jordanclermont.com</a>
+  </footer>
+
+  <script>
+    if ('IntersectionObserver' in window) {
+      const sections = document.querySelectorAll('.case-study');
+      const obs = new IntersectionObserver(entries => {
+        entries.forEach(e => {
+          if (e.isIntersecting) {
+            e.target.style.animationPlayState = 'running';
+            obs.unobserve(e.target);
+          }
+        });
+      }, { threshold: 0.08 });
+      sections.forEach(s => {
+        s.style.animationPlayState = 'paused';
+        obs.observe(s);
+      });
+    }
+  </script>
+</body>
+</html>
