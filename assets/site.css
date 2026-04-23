@@ -530,7 +530,8 @@ body {
 .ba-frames { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
 .ba-frame {
   position: relative;
-  overflow: hidden;
+  max-height: 480px;
+  overflow-y: auto;
   border: 1px solid var(--border);
   background: #fff;
 }
