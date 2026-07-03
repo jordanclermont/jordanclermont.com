@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Jordan Clermont">
+  <rect width="64" height="64" rx="12" fill="#3d5f6e"/>
+  <text x="32" y="46" text-anchor="middle"
+        font-family="Georgia, 'Cormorant Garamond', serif"
+        font-size="42" font-style="italic" font-weight="700"
+        fill="#f0ece3">J</text>
+  <rect x="0" y="58" width="64" height="6" fill="#c4963a"/>
+</svg>
