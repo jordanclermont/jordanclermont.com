@@ -7,7 +7,7 @@
   <meta name="description" content="Visual identity, print, and digital design work by Jordan Clermont." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@400;500&family=DM+Mono:wght@400&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,700;1,400;1,600&family=DM+Sans&family=DM+Mono&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="../assets/site.css" />
   <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
 
@@ -95,7 +95,7 @@
       <div class="case-body">
         <div>
           <div class="case-section-label">The work</div>
-          <p class="case-text">Years of event and campaign creative for SAITSA — drag bingo nights, federal election engagement, Calgary Flames student nights, clubs week, and campus safety programs. Every piece had to work within the Saitsa* brand while still stopping a student mid-hallway.</p>
+          <p class="case-text">Years of event and campaign creative for SAITSA — drag bingo at the Gateway (the campus bar, now demolished but never forgotten), federal election engagement, Calgary Flames student nights, clubs week, and campus safety programs. Every piece had to work within the Saitsa* brand while still stopping a student mid-hallway.</p>
         </div>
         <div>
           <div class="case-section-label">The constraint</div>
@@ -105,7 +105,7 @@
         <div class="work-gallery cols-3">
           <figure class="work-item">
             <img src="../assets/work/dirty-bingo.jpg" alt="Dirty Bingo event poster — pop-art open mouth with tongue out on a yellow background, hosted by Felicia Bonée at The Gateway" loading="lazy" />
-            <figcaption>Dirty Bingo — The Gateway, 2019</figcaption>
+            <figcaption>Dirty Bingo — the Gateway campus bar, 2019</figcaption>
           </figure>
           <figure class="work-item">
             <img src="../assets/work/popcorn-politics.jpg" alt="Popcorn and Politics poster — megaphone spraying popcorn across a purple background, promoting a federal election candidate meet-up" loading="lazy" />
@@ -148,7 +148,7 @@
       <div class="case-body">
         <div>
           <div class="case-section-label">Food &amp; beverage</div>
-          <p class="case-text">Menu systems for campus venues — The Odyssey, the Station, catering — plus the digital signage that promoted them. Seasonal feature boards, TV-screen ads, and a custom icon set so the food programs had their own visual shorthand.</p>
+          <p class="case-text">Menu systems for SAITSA's food and beverage venues — the Odyssey, the campus coffee shop every SAIT student of the last decade knows by name, plus the Station and campus catering — and the digital signage that promoted them. Seasonal feature boards, TV-screen ads, and a custom icon set so the food programs had their own visual shorthand.</p>
         </div>
         <div>
           <div class="case-section-label">And for fun</div>
@@ -158,7 +158,7 @@
         <div class="work-gallery cols-3">
           <figure class="work-item">
             <img src="../assets/work/odyssey-pickmeups.jpg" alt="Back to School Pick Me Ups drink board for The Odyssey — bold white type on navy listing three feature coffee drinks" loading="lazy" />
-            <figcaption>Feature drinks board — The Odyssey, 2019</figcaption>
+            <figcaption>Feature drinks board — the Odyssey coffee shop, 2019</figcaption>
           </figure>
           <figure class="work-item">
             <img src="../assets/work/king-creatus.jpg" alt="King Creatus zine cover — hand-drawn black pencil character with a crown and mustache trailing rainbow ribbons" loading="lazy" />
@@ -179,22 +179,6 @@
     <a href="mailto:hello@jordanclermont.com" class="footer-contact">hello@jordanclermont.com</a>
   </footer>
 
-  <script>
-    if ('IntersectionObserver' in window) {
-      const articles = document.querySelectorAll('.case-study');
-      const obs = new IntersectionObserver(entries => {
-        entries.forEach(e => {
-          if (e.isIntersecting) {
-            e.target.style.animationPlayState = 'running';
-            obs.unobserve(e.target);
-          }
-        });
-      }, { threshold: 0.08 });
-      articles.forEach(a => {
-        a.style.animationPlayState = 'paused';
-        obs.observe(a);
-      });
-    }
-  </script>
+  <script src="../assets/site.js" defer></script>
 </body>
 </html>

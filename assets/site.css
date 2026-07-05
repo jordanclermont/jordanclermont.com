@@ -20,7 +20,77 @@
   --clay:       #b5623a;
   --bigsky:     #5b8aad;
 
+  --serif:      'Cormorant Garamond', Georgia, serif;
+  --sans:       'DM Sans', -apple-system, sans-serif;
+  --mono:       'DM Mono', monospace;
+
   --max:        1100px;
+}
+
+/* ─── alternate palettes (preview via theme picker) ──────────────────────── */
+:root[data-theme="dusk"] {
+  --hero-bg:    #473d63;
+  --hero-text:  #f3eee6;
+  --hero-muted: #d8d2e6;
+  --sky:        #f4edea;
+  --ink:        #241f2b;
+  --muted:      #5c5164;
+  --border:     #d6c9c6;
+  --wheat:      #c99a45;
+  --sage:       #7a6a92;
+  --sage-deep:  #544468;
+  --clay:       #c26456;
+  --bigsky:     #8f7fb0;
+}
+:root[data-theme="bigsky"] {
+  --hero-bg:    #33719f;
+  --hero-text:  #f6f9fb;
+  --hero-muted: #d3e4ef;
+  --sky:        #f4f7f9;
+  --ink:        #16222c;
+  --muted:      #4a5a66;
+  --border:     #c9d6de;
+  --wheat:      #d9a53f;
+  --sage:       #5a8a6e;
+  --sage-deep:  #3f6b52;
+  --clay:       #c26b4a;
+  --bigsky:     #7ab3d9;
+}
+:root[data-theme="harvest"] {
+  --hero-bg:    #7d5320;
+  --hero-text:  #f7f0e0;
+  --hero-muted: #e8d9b8;
+  --sky:        #f5efdf;
+  --ink:        #2b2113;
+  --muted:      #6b5636;
+  --border:     #d9cba8;
+  --wheat:      #c4963a;
+  --sage:       #6e7a45;
+  --sage-deep:  #55632f;
+  --clay:       #a84f2e;
+  --bigsky:     #5b8aad;
+}
+:root[data-theme="chinook"] {
+  --hero-bg:    #39465e;
+  --hero-text:  #f6eee8;
+  --hero-muted: #d9d3dd;
+  --sky:        #f6efe9;
+  --ink:        #25222a;
+  --muted:      #5d5254;
+  --border:     #dcc9bd;
+  --wheat:      #d19a44;
+  --sage:       #647a6b;
+  --sage-deep:  #46584c;
+  --clay:       #c76d4f;
+  --bigsky:     #7d95b5;
+}
+
+/* ─── alternate font pairings (preview via theme picker) ─────────────────── */
+:root[data-font="fraunces"] {
+  --serif: 'Fraunces', Georgia, serif;
+}
+:root[data-font="playfair"] {
+  --serif: 'Playfair Display', Georgia, serif;
 }
 
 /* ─── reset + base ───────────────────────────────────────────────────────── */
@@ -32,7 +102,7 @@ body {
   min-height: 100vh;
   background: var(--sky);
   color: var(--ink);
-  font-family: 'DM Sans', sans-serif;
+  font-family: var(--sans);
   font-weight: 400;
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
@@ -104,7 +174,7 @@ body {
 }
 
 .page-landing h1 {
-  font-family: 'Cormorant Garamond', serif;
+  font-family: var(--serif);
   font-size: clamp(3.5rem, 9vw, 6.5rem);
   font-weight: 700;
   line-height: 0.9;
@@ -151,7 +221,7 @@ body {
 
 .doors-sidebar-title {
   margin-bottom: 0.8rem;
-  font-family: 'Cormorant Garamond', serif;
+  font-family: var(--serif);
   font-size: 1.5rem;
   font-style: italic;
   line-height: 1.3;
@@ -179,7 +249,7 @@ body {
 .door-info { display: flex; flex-direction: column; gap: 0.4rem; }
 
 .door-label {
-  font-family: 'Cormorant Garamond', serif;
+  font-family: var(--serif);
   font-size: clamp(1.8rem, 3.5vw, 2.6rem);
   font-weight: 400;
   transition: color 0.2s;
@@ -194,7 +264,7 @@ body {
 
 .door-tags { display: flex; align-items: center; gap: 0.5rem; }
 .door-tag {
-  font-family: 'DM Mono', monospace;
+  font-family: var(--mono);
   font-size: 0.72rem;
   color: var(--muted);
   letter-spacing: 0.1em;
@@ -227,14 +297,14 @@ body {
 }
 .footer-copy {
   color: var(--muted);
-  font-family: 'DM Mono', monospace;
+  font-family: var(--mono);
   font-size: 0.75rem;
 }
 .footer-quote {
   flex: 1;
   min-width: 200px;
   color: var(--muted);
-  font-family: 'Cormorant Garamond', serif;
+  font-family: var(--serif);
   font-size: 0.95rem;
   font-style: italic;
   text-align: center;
@@ -242,7 +312,7 @@ body {
 .footer-links { display: flex; gap: 1.5rem; }
 .footer-links a {
   color: var(--muted);
-  font-family: 'DM Mono', monospace;
+  font-family: var(--mono);
   font-size: 0.78rem;
   letter-spacing: 0.08em;
   text-decoration: none;
@@ -257,7 +327,7 @@ body {
   right: 1rem; bottom: 1rem;
   z-index: 99;
   color: var(--sky);
-  font-family: 'DM Mono', monospace;
+  font-family: var(--mono);
   font-size: 0.55rem;
   letter-spacing: 0.15em;
   user-select: none;
@@ -283,14 +353,14 @@ body {
 #egg .egg-text {
   max-width: 380px;
   color: var(--sky);
-  font-family: 'Cormorant Garamond', serif;
+  font-family: var(--serif);
   font-size: 1.8rem;
   font-style: italic;
   line-height: 1.4;
 }
 #egg .egg-sub {
   color: var(--hero-muted);
-  font-family: 'DM Mono', monospace;
+  font-family: var(--mono);
   font-size: 0.78rem;
   letter-spacing: 0.08em;
 }
@@ -298,7 +368,7 @@ body {
   margin-top: 1rem;
   color: var(--hero-muted);
   cursor: pointer;
-  font-family: 'DM Mono', monospace;
+  font-family: var(--mono);
   font-size: 0.75rem;
   letter-spacing: 0.12em;
   text-transform: uppercase;
@@ -340,7 +410,7 @@ body {
 }
 .nav-back {
   color: var(--hero-muted);
-  font-family: 'DM Mono', monospace;
+  font-family: var(--mono);
   font-size: 0.78rem;
   letter-spacing: 0.1em;
   text-decoration: none;
@@ -350,7 +420,7 @@ body {
 .nav-back:hover { color: var(--hero-text); }
 .nav-label {
   color: var(--hero-muted);
-  font-family: 'DM Mono', monospace;
+  font-family: var(--mono);
   font-size: 0.75rem;
   letter-spacing: 0.15em;
   text-transform: uppercase;
@@ -362,13 +432,13 @@ body {
 .hero-kicker {
   margin-bottom: 1rem;
   color: var(--hero-muted);
-  font-family: 'DM Mono', monospace;
+  font-family: var(--mono);
   font-size: 0.78rem;
   letter-spacing: 0.15em;
   text-transform: uppercase;
 }
 .page-sub h1 {
-  font-family: 'Cormorant Garamond', serif;
+  font-family: var(--serif);
   font-size: clamp(3rem, 8vw, 5.5rem);
   font-weight: 700;
   line-height: 0.9;
@@ -398,14 +468,14 @@ body {
 .hero-stat { display: flex; flex-direction: column; gap: 0.25rem; }
 .hero-stat-num {
   color: var(--hero-text);
-  font-family: 'Cormorant Garamond', serif;
+  font-family: var(--serif);
   font-size: 2.1rem;
   font-weight: 700;
   line-height: 1;
 }
 .hero-stat-label {
   color: var(--hero-muted);
-  font-family: 'DM Mono', monospace;
+  font-family: var(--mono);
   font-size: 0.72rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
@@ -438,12 +508,12 @@ body {
 .case-num {
   margin-bottom: 0.6rem;
   color: var(--muted);
-  font-family: 'DM Mono', monospace;
+  font-family: var(--mono);
   font-size: 0.72rem;
   letter-spacing: 0.15em;
 }
 .page-sub h2 {
-  font-family: 'Cormorant Garamond', serif;
+  font-family: var(--serif);
   font-size: clamp(2rem, 4vw, 3rem);
   font-weight: 400;
   line-height: 1.05;
@@ -460,7 +530,7 @@ body {
   padding: 0.25rem 0.55rem;
   border: 1px solid var(--border);
   color: var(--muted);
-  font-family: 'DM Mono', monospace;
+  font-family: var(--mono);
   font-size: 0.7rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
@@ -472,7 +542,7 @@ body {
 .case-section-label {
   margin-bottom: 0.6rem;
   color: var(--muted);
-  font-family: 'DM Mono', monospace;
+  font-family: var(--mono);
   font-size: 0.72rem;
   letter-spacing: 0.15em;
   text-transform: uppercase;
@@ -495,7 +565,7 @@ body {
 .case-stat { display: flex; flex-direction: column; gap: 0.25rem; }
 .case-stat-num {
   color: var(--hero-bg);
-  font-family: 'Cormorant Garamond', serif;
+  font-family: var(--serif);
   font-size: 1.9rem;
   font-weight: 700;
   line-height: 1;
@@ -503,7 +573,7 @@ body {
 .case-stat-label {
   max-width: 130px;
   color: var(--muted);
-  font-family: 'DM Mono', monospace;
+  font-family: var(--mono);
   font-size: 0.7rem;
   letter-spacing: 0.08em;
   line-height: 1.45;
@@ -520,7 +590,7 @@ body {
 }
 .ba-label {
   color: var(--muted);
-  font-family: 'DM Mono', monospace;
+  font-family: var(--mono);
   font-size: 0.72rem;
   letter-spacing: 0.15em;
   text-transform: uppercase;
@@ -556,7 +626,7 @@ body {
 }
 .pull-quote p {
   color: var(--ink);
-  font-family: 'Cormorant Garamond', serif;
+  font-family: var(--serif);
   font-size: 1.4rem;
   font-style: italic;
   line-height: 1.5;
@@ -565,7 +635,7 @@ body {
   display: block;
   margin-top: 0.6rem;
   color: var(--muted);
-  font-family: 'DM Mono', monospace;
+  font-family: var(--mono);
   font-size: 0.72rem;
   font-style: normal;
   letter-spacing: 0.1em;
@@ -595,7 +665,7 @@ body {
 .work-item figcaption {
   margin-top: 0.5rem;
   color: var(--muted);
-  font-family: 'DM Mono', monospace;
+  font-family: var(--mono);
   font-size: 0.7rem;
   letter-spacing: 0.08em;
   line-height: 1.5;
@@ -622,7 +692,7 @@ body {
 .video-note {
   margin-top: 0.6rem;
   color: var(--muted);
-  font-family: 'DM Mono', monospace;
+  font-family: var(--mono);
   font-size: 0.72rem;
   font-style: italic;
   letter-spacing: 0.05em;
@@ -642,7 +712,7 @@ body {
 }
 .footer-contact {
   color: var(--muted);
-  font-family: 'DM Mono', monospace;
+  font-family: var(--mono);
   font-size: 0.78rem;
   letter-spacing: 0.08em;
   text-decoration: none;
@@ -691,7 +761,7 @@ body {
 .releases-more { grid-column: 1 / -1; margin-top: 1.5rem; }
 .releases-more a {
   color: var(--muted);
-  font-family: 'DM Mono', monospace;
+  font-family: var(--mono);
   font-size: 0.78rem;
   letter-spacing: 0.08em;
   text-decoration: none;
@@ -709,24 +779,17 @@ body {
   justify-content: center;
 }
 .release-art img { display: block; width: 100%; height: 100%; object-fit: cover; }
-.release-art-placeholder {
-  color: var(--muted);
-  font-family: 'DM Mono', monospace;
-  font-size: 0.72rem;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-}
 
 .release-info { padding: 1.2rem; }
 .release-title {
-  font-family: 'Cormorant Garamond', serif;
+  font-family: var(--serif);
   font-size: 1.3rem;
   font-weight: 400;
   margin-bottom: 0.3rem;
 }
 .release-detail {
   color: var(--muted);
-  font-family: 'DM Mono', monospace;
+  font-family: var(--mono);
   font-size: 0.72rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -753,7 +816,7 @@ body {
 .essay-entry:hover { padding-left: 0.6rem; }
 
 .essay-title {
-  font-family: 'Cormorant Garamond', serif;
+  font-family: var(--serif);
   font-size: clamp(1.5rem, 3vw, 2.1rem);
   font-weight: 400;
   line-height: 1.2;
@@ -770,7 +833,7 @@ body {
 }
 .essay-date {
   color: var(--muted);
-  font-family: 'DM Mono', monospace;
+  font-family: var(--mono);
   font-size: 0.72rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -783,4 +846,79 @@ body {
   .essay-entry { grid-template-columns: 1fr; gap: 0.5rem; }
   .work-gallery.cols-2,
   .work-gallery.cols-3 { grid-template-columns: 1fr 1fr; gap: 1rem; }
+}
+
+/* ==========================================================================
+   DEV THEME PICKER — temporary preview tool, remove before launch
+   ========================================================================== */
+.dev-picker {
+  position: fixed;
+  left: 1rem;
+  bottom: 1.2rem;
+  z-index: 5000;
+  font-family: var(--mono);
+}
+.dp-toggle {
+  width: 2.4rem;
+  height: 2.4rem;
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  background: var(--sky);
+  cursor: pointer;
+  font-size: 1.1rem;
+  line-height: 1;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.12);
+  transition: transform 0.2s;
+}
+.dp-toggle:hover { transform: rotate(20deg); }
+
+.dp-panel {
+  display: none;
+  position: absolute;
+  left: 0;
+  bottom: 3rem;
+  min-width: 210px;
+  padding: 0.9rem;
+  border: 1px solid var(--border);
+  background: var(--sky);
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.16);
+}
+.dev-picker.open .dp-panel { display: block; }
+
+.dp-heading {
+  margin-bottom: 0.5rem;
+  color: var(--muted);
+  font-size: 0.6rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+.dp-row { display: flex; gap: 0.5rem; margin-bottom: 0.9rem; }
+.dp-row:last-child { margin-bottom: 0; }
+
+.dp-swatch {
+  width: 1.7rem;
+  height: 1.7rem;
+  border: 2px solid transparent;
+  border-radius: 50%;
+  cursor: pointer;
+  padding: 0;
+  transition: transform 0.15s;
+}
+.dp-swatch:hover { transform: scale(1.15); }
+.dp-swatch.active { border-color: var(--ink); }
+
+.dp-font {
+  padding: 0.35rem 0.55rem;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--muted);
+  cursor: pointer;
+  font-family: var(--mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.dp-font.active {
+  border-color: var(--ink);
+  color: var(--ink);
 }
