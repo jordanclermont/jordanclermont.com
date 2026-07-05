@@ -155,8 +155,8 @@ body {
   font-family: var(--serif);
   font-size: clamp(3.5rem, 9vw, 6.5rem);
   font-weight: 400;
-  line-height: 0.9;
-  letter-spacing: -0.03em;
+  line-height: 0.95;
+  letter-spacing: -0.01em;
   color: var(--hero-text);
 }
 .page-landing h1 .last {
@@ -419,8 +419,8 @@ body {
   font-family: var(--serif);
   font-size: clamp(3rem, 8vw, 5.5rem);
   font-weight: 400;
-  line-height: 0.9;
-  letter-spacing: -0.03em;
+  line-height: 0.95;
+  letter-spacing: -0.01em;
   color: var(--hero-text);
 }
 .page-sub h1 em {
@@ -494,8 +494,8 @@ body {
   font-family: var(--serif);
   font-size: clamp(2rem, 4vw, 3rem);
   font-weight: 400;
-  line-height: 1.05;
-  letter-spacing: -0.02em;
+  line-height: 1.1;
+  letter-spacing: 0;
 }
 .case-tags {
   display: flex;
