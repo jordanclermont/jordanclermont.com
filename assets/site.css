@@ -278,15 +278,18 @@ body {
   font-family: var(--mono);
   font-size: 0.75rem;
 }
-.footer-quote {
+.footer-cta {
   flex: 1;
   min-width: 200px;
   color: var(--muted);
   font-family: var(--serif);
-  font-size: 0.95rem;
+  font-size: 1.05rem;
   font-style: italic;
   text-align: center;
+  text-decoration: none;
+  transition: color 0.2s;
 }
+.footer-cta:hover { color: var(--ink); }
 .footer-links { display: flex; gap: 1.5rem; }
 .footer-links a {
   color: var(--muted);
