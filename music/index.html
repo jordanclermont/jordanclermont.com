@@ -18,6 +18,10 @@
   <meta property="og:url" content="https://jordanclermont-com.pages.dev/music/" />
   <meta property="og:image" content="https://jordanclermont-com.pages.dev/jo.jpg" />
   <meta name="twitter:card" content="summary_large_image" />
+  <script>
+    // apply saved day/night choice before first paint
+    try { const m = localStorage.getItem('jc-mode'); if (m) document.documentElement.setAttribute('data-mode', m); } catch (e) {}
+  </script>
 </head>
 
 <body class="page-sub page-music">
