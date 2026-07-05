@@ -108,6 +108,12 @@ dist
 communications/*
 !communications/index.html
 
+# Raw portfolio source material (~1GB) — web-ready copies live in assets/work/
+portfolio/
+
+# Large source PDFs dropped into assets/
+assets/*.pdf
+
 # Docusaurus cache and generated files
 .docusaurus
 

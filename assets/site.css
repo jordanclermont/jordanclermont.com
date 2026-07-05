@@ -572,6 +572,36 @@ body {
   text-transform: uppercase;
 }
 
+/* full-width intro paragraph inside a case body */
+.section-intro { grid-column: 1 / -1; max-width: 680px; }
+.section-intro a { color: var(--sage-deep); }
+
+/* work gallery (design page) */
+.work-gallery {
+  display: grid;
+  gap: 1.5rem;
+  grid-column: 1 / -1;
+  margin-top: 1rem;
+}
+.work-gallery.cols-2 { grid-template-columns: repeat(2, 1fr); }
+.work-gallery.cols-3 { grid-template-columns: repeat(3, 1fr); }
+
+.work-item img {
+  display: block;
+  width: 100%;
+  border: 1px solid var(--border);
+  background: #fff;
+}
+.work-item figcaption {
+  margin-top: 0.5rem;
+  color: var(--muted);
+  font-family: 'DM Mono', monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  line-height: 1.5;
+  text-transform: uppercase;
+}
+
 /* video */
 .video-wrap {
   position: relative;
@@ -649,10 +679,26 @@ body {
   grid-column: 1 / -1;
 }
 .release-card {
+  display: block;
   border: 1px solid var(--border);
+  color: var(--ink);
+  text-decoration: none;
   transition: border-color 0.2s;
 }
 .release-card:hover { border-color: var(--muted); }
+.release-card:hover .release-title { color: var(--hero-bg); }
+
+.releases-more { grid-column: 1 / -1; margin-top: 1.5rem; }
+.releases-more a {
+  color: var(--muted);
+  font-family: 'DM Mono', monospace;
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: color 0.2s;
+}
+.releases-more a:hover { color: var(--ink); }
 
 .release-art {
   aspect-ratio: 1;
@@ -690,6 +736,7 @@ body {
    WRITING PAGE — essay list
    ========================================================================== */
 .essay-list {
+  grid-column: 1 / -1;
   border-top: 1px solid var(--border);
 }
 .essay-entry {
@@ -734,4 +781,6 @@ body {
 @media (max-width: 680px) {
   .releases-grid { grid-template-columns: 1fr 1fr; gap: 1rem; }
   .essay-entry { grid-template-columns: 1fr; gap: 0.5rem; }
+  .work-gallery.cols-2,
+  .work-gallery.cols-3 { grid-template-columns: 1fr 1fr; gap: 1rem; }
 }
