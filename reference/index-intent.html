@@ -22,6 +22,79 @@
     // apply saved day/night choice before first paint
     try { const m = localStorage.getItem('jc-mode'); if (m) document.documentElement.setAttribute('data-mode', m); } catch (e) {}
   </script>
+
+  <!-- ── PREVIEW-ONLY styles for the "What brings you here?" intent chooser ──
+       Kept inline so the shared site.css / live build stays untouched while you
+       compare. If you decide to keep this, these move into assets/site.css. -->
+  <style>
+    .intent { margin-top: 1.5rem; }
+    .intent-q {
+      display: block;
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 0.6rem;
+    }
+    .intent-opts { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+    .intent-chip {
+      font-family: var(--sans);
+      font-size: 0.85rem;
+      line-height: 1;
+      padding: 0.4rem 0.75rem;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      background: transparent;
+      color: var(--ink);
+      cursor: pointer;
+      transition: color 0.2s, border-color 0.2s, background 0.2s;
+    }
+    .intent-chip:hover { border-color: var(--hero-bg); color: var(--hero-bg); }
+    .intent-chip[aria-pressed="true"] {
+      background: var(--ink);
+      color: var(--sky);
+      border-color: var(--ink);
+    }
+
+    /* recommended-door emphasis */
+    .door.is-recommended .door-label { color: var(--hero-bg); }
+    .door-flag {
+      width: max-content;
+      margin-top: 0.2rem;
+      font-family: var(--mono);
+      font-size: 0.64rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--hero-bg);
+      border: 1px solid var(--hero-bg);
+      border-radius: 999px;
+      padding: 0.18rem 0.5rem;
+    }
+
+    /* tailored contact CTA */
+    .intent-cta {
+      margin: 1.6rem 0 0;
+      padding: 1.1rem 1.3rem;
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--wheat);
+      border-radius: 12px;
+      background: var(--sky);
+    }
+    .intent-cta p { color: var(--muted); font-size: 0.95rem; margin: 0 0 0.35rem; }
+    .intent-cta a {
+      font-family: var(--sans);
+      font-weight: 500;
+      color: var(--hero-bg);
+      text-decoration: none;
+    }
+    .intent-cta a + a { margin-left: 1rem; }
+    .intent-cta a:hover { text-decoration: underline; }
+
+    @media (max-width: 720px) {
+      .intent { margin-top: 1.2rem; }
+    }
+  </style>
 </head>
 
 <body class="page-landing">
@@ -53,11 +126,7 @@
             <span id="nameClick">Jordan</span><br>
             <span class="last">Clermont.</span>
           </h1>
-          <div class="hero-pitch">
-            <p class="hero-pitch-main">I build things you can run without me.</p>
-            <p class="hero-pitch-sub">Most agencies sell you dependency. I'd rather build your capability.</p>
-          </div>
-          <p class="tagline">Communicator, designer, musician, writer. Yes, all four. No, I won't pick — it's what it takes to bridge creative and technical without losing anything in translation.</p>
+          <p class="tagline">Communicator, designer, musician, writer. Yes, all four. No, I won't pick.</p>
         </div>
         <div class="hero-portrait">
           <img src="jo.jpg" alt="Jordan Clermont" id="jo-photo" />
@@ -141,13 +210,11 @@
 
   <footer>
     <div class="footer-copy">&copy; 2026 Jordan Clermont</div>
-    <a class="footer-cta" href="mailto:hello@jordanclermont.com">Tell me where the friction is. &rarr;</a>
+    <a class="footer-cta" href="mailto:hello@jordanclermont.com">Got a project in mind? Say hi. &rarr;</a>
     <div class="footer-links">
-      <a href="/services">Services</a>
       <a href="mailto:hello@jordanclermont.com">Email</a>
       <a href="https://linkedin.com/in/jordanclermont" target="_blank" rel="noopener">LinkedIn</a>
       <a href="https://instagram.com/jordanclermont" target="_blank" rel="noopener">Instagram</a>
-      <a href="/resume">Résumé</a>
     </div>
   </footer>
 
@@ -199,6 +266,88 @@
         ti = 0;
       }
     }, 3500);
+
+    /* ── PREVIEW-ONLY: "What brings you here?" intent chooser ───────────────
+       Progressive enhancement. With JS off, all four doors show with the
+       default intro and no CTA — identical to the current live site. */
+    (function () {
+      const DEFAULT_INTRO = 'Different disciplines, same person. Start anywhere — it all connects.';
+      const intents = {
+        project: {
+          intro: 'Tell me where the friction is — comms, design, or a bit of both — and start with the work closest to your problem.',
+          recommend: ['communications', 'design'],
+          flag: 'Start here',
+          cta: '<p>Got something specific in mind? Send a link or a sentence and I’ll tell you how I’d approach it.</p>' +
+               '<a href="mailto:hello@jordanclermont.com?subject=Project%20inquiry">hello@jordanclermont.com &rarr;</a>'
+        },
+        hiring: {
+          intro: 'Nine and a half years leading communications, plus design, writing, and music on the side. The comms work is the place to start.',
+          recommend: ['communications'],
+          flag: 'Start here',
+          cta: '<p>Sizing me up for a role? Happy to talk — or send a full CV.</p>' +
+               '<a href="mailto:hello@jordanclermont.com?subject=Role%20inquiry">hello@jordanclermont.com &rarr;</a>' +
+               '<a href="https://linkedin.com/in/jordanclermont" target="_blank" rel="noopener">LinkedIn &rarr;</a>'
+        },
+        browsing: {
+          intro: DEFAULT_INTRO,
+          recommend: [],
+          flag: null,
+          cta: null
+        }
+      };
+
+      const chips = Array.from(document.querySelectorAll('.intent-chip'));
+      const intro = document.getElementById('doorsIntro');
+      const ctaBox = document.getElementById('intentCta');
+      const doors = Array.from(document.querySelectorAll('.door'));
+
+      function clearState() {
+        doors.forEach(d => {
+          d.classList.remove('is-recommended');
+          const flag = d.querySelector('.door-flag');
+          if (flag) flag.remove();
+        });
+        ctaBox.hidden = true;
+        ctaBox.innerHTML = '';
+      }
+
+      function apply(key) {
+        const cfg = intents[key];
+        clearState();
+        intro.innerHTML = cfg.intro;
+
+        cfg.recommend.forEach(name => {
+          const door = doors.find(d => d.dataset.door === name);
+          if (!door) return;
+          door.classList.add('is-recommended');
+          const info = door.querySelector('.door-info');
+          const flag = document.createElement('span');
+          flag.className = 'door-flag';
+          flag.textContent = cfg.flag;
+          info.appendChild(flag);
+        });
+
+        if (cfg.cta) {
+          ctaBox.innerHTML = cfg.cta;
+          ctaBox.hidden = false;
+        }
+      }
+
+      chips.forEach(chip => {
+        chip.addEventListener('click', () => {
+          const key = chip.dataset.intent;
+          const alreadyOn = chip.getAttribute('aria-pressed') === 'true';
+          chips.forEach(c => c.setAttribute('aria-pressed', 'false'));
+          if (alreadyOn) {
+            // toggle off → back to default
+            apply('browsing');
+          } else {
+            chip.setAttribute('aria-pressed', 'true');
+            apply(key);
+          }
+        });
+      });
+    })();
   </script>
   <script src="assets/site.js" defer></script>
 </body>

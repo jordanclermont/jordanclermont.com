@@ -166,9 +166,26 @@ body {
 }
 #nameClick { cursor: pointer; user-select: none; }
 
+.hero-pitch { margin-top: 1.3rem; }
+.hero-pitch-main {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: clamp(1.4rem, 3vw, 1.9rem);
+  font-weight: 400;
+  color: var(--hero-text);
+  line-height: 1.3;
+}
+.hero-pitch-sub {
+  max-width: 420px;
+  margin-top: 0.5rem;
+  color: var(--hero-muted);
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
 .tagline {
   max-width: 440px;
-  margin-top: 1.5rem;
+  margin-top: 1.2rem;
   color: var(--hero-text);
   font-size: 1.05rem;
   line-height: 1.7;
@@ -258,6 +275,75 @@ body {
 .door:hover .door-arrow {
   color: var(--hero-bg);
   transform: translate(3px, -3px);
+}
+
+/* "what brings you here?" intent chooser */
+.intent { margin-top: 1.5rem; }
+.intent-q {
+  display: block;
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 0.6rem;
+}
+.intent-opts { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+.intent-chip {
+  font-family: var(--sans);
+  font-size: 0.85rem;
+  line-height: 1;
+  padding: 0.4rem 0.75rem;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--ink);
+  cursor: pointer;
+  transition: color 0.2s, border-color 0.2s, background 0.2s;
+}
+.intent-chip:hover { border-color: var(--hero-bg); color: var(--hero-bg); }
+.intent-chip[aria-pressed="true"] {
+  background: var(--ink);
+  color: var(--sky);
+  border-color: var(--ink);
+}
+
+/* recommended-door emphasis */
+.door.is-recommended .door-label { color: var(--hero-bg); }
+.door-flag {
+  width: max-content;
+  margin-top: 0.2rem;
+  font-family: var(--mono);
+  font-size: 0.64rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--hero-bg);
+  border: 1px solid var(--hero-bg);
+  border-radius: 999px;
+  padding: 0.18rem 0.5rem;
+}
+
+/* tailored contact CTA */
+.intent-cta {
+  margin: 1.6rem 0 0;
+  padding: 1.1rem 1.3rem;
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--wheat);
+  border-radius: 12px;
+  background: var(--sky);
+}
+.intent-cta p { color: var(--muted); font-size: 0.95rem; margin: 0 0 0.35rem; }
+.intent-cta a {
+  font-family: var(--sans);
+  font-weight: 500;
+  color: var(--hero-bg);
+  text-decoration: none;
+}
+.intent-cta a + a { margin-left: 1rem; }
+.intent-cta a:hover { text-decoration: underline; }
+
+@media (max-width: 720px) {
+  .intent { margin-top: 1.2rem; }
 }
 
 /* landing footer */
@@ -399,6 +485,17 @@ body {
   transition: color 0.2s;
 }
 .nav-back:hover { color: var(--hero-text); }
+.nav-links { display: flex; align-items: center; gap: 1.5rem; }
+.nav-link {
+  color: var(--hero-muted);
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: color 0.2s;
+}
+.nav-link:hover { color: var(--hero-text); }
 .nav-label {
   color: var(--hero-muted);
   font-family: var(--mono);
